@@ -3,11 +3,12 @@ console.log("Welcome to WAR");
 var cardRank = ["2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"]
 var cardSuit = ["Hearts","Spades","Clubs", "Diamonds"]
 var maximumCardValue = 12 
-var player1 = "Player 1"
-var player2 = "Player 2"
+var player1 = []
+var player2 = []
 var playground = []
 player1.hand=[]
 player2.hand=[]
+let i=0;
 
 
 // I'm starting at 2 as Index=0, so it's value will be 0
@@ -62,16 +63,26 @@ function shuffleDeck (x) {
 
 let shuffledDeck = shuffleDeck(fullDeck)
 shuffledDeck
+
+console.log("Deck generated and shuffled:")
 console.log(newDeck)
 
-//split deck in half
-//player 1 first
-console.log(newDeck);
-function pullCard1 (){
-    player1.hand.push(newDeck.cards)}
+//split deck in half 
+function pullCard (){
+while(i<26)
+  {player1.hand.push(newDeck.cards.shift());
+   player2.hand.push(newDeck.cards.shift())
+   i++}
+}
 
-pullCard1()
-
-console.log(pullCard1())
+pullCard()
+/* test hands 
+console.log("player1 hand:")
+console.log(player1.hand)
+console.log("player2 hand:")
+console.log(player2.hand)
+console.log("verify leftover deck is empty:")
+console.log(newDeck)
+*/
 
 ///execution of pulling the top card from each player //
