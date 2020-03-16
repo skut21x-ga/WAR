@@ -77,7 +77,7 @@ while(i<26)
 }
 
 pullCard()
-/* test contents of hand arrays:
+/* test contents of hand arrays: 
 console.log("player1 hand:"); console.log(player1.hand)
 console.log("player2 hand:"); console.log(player2.hand)
 console.log("verify leftover deck is empty:"); console.log(newDeck)
@@ -88,13 +88,18 @@ console.log("verify leftover deck is empty:"); console.log(newDeck)
 function playWar () {
   playground.player1card.push=(player1.hand.shift())
   playground.player2card.push=(player2.hand.shift())
-}
+  let cardPlayed1 = playground.player1card
+  let cardPlayed2 = playground.player2card
+  let cardsPlayedAll = (cardPlayed1 + cardPlayed2)
+  console.log("Player 1 draws a " + cardPlayed1.push.name)
+  console.log("Player 2 draws a " + cardPlayed2.push.name)
+  console.log(cardPlayed1.push.score)
+  console.log(cardPlayed2.push.score)
+  if(cardPlayed1.push.score>cardPlayed2.push.score){
+    console.log("Player 1 wins the round!")}
+  else if  (cardPlayed1.push.score<cardPlayed2.push.score){
+    console.log("Player 1 wins the round!")}
+  else {
+      console.log("It's a tie! Let's go to WAR!")}
+  }
 playWar ()
-
-let cardPlayed1 = playground.player1card
-let cardPlayed2 = playground.player2card
-let cardsPlayedAll = (cardPlayed1 + cardPlayed2)
-console.log("Player 1 draws a " + cardPlayed1.push.name)
-console.log("Player 2 draws a " + cardPlayed2.push.name)
-console.log(player1.hand)
-console.log(cardPlayed1)
