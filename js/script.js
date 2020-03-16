@@ -8,6 +8,8 @@ var player2 = []
 var playground = []
 player1.hand=[]
 player2.hand=[]
+playground.player1card=[]
+playground.player2card=[]
 let i=0;
 
 
@@ -64,8 +66,7 @@ function shuffleDeck (x) {
 let shuffledDeck = shuffleDeck(fullDeck)
 shuffledDeck
 
-console.log("Deck generated and shuffled:")
-console.log(newDeck)
+//console.log("Deck generated and shuffled:")
 
 //split deck in half 
 function pullCard (){
@@ -76,13 +77,24 @@ while(i<26)
 }
 
 pullCard()
-/* test hands 
-console.log("player1 hand:")
-console.log(player1.hand)
-console.log("player2 hand:")
-console.log(player2.hand)
-console.log("verify leftover deck is empty:")
-console.log(newDeck)
+/* test contents of hand arrays:
+console.log("player1 hand:"); console.log(player1.hand)
+console.log("player2 hand:"); console.log(player2.hand)
+console.log("verify leftover deck is empty:"); console.log(newDeck)
 */
 
 ///execution of pulling the top card from each player //
+
+function playWar () {
+  playground.player1card.push=(player1.hand.shift())
+  playground.player2card.push=(player2.hand.shift())
+}
+playWar ()
+
+let cardPlayed1 = playground.player1card
+let cardPlayed2 = playground.player2card
+let cardsPlayedAll = (cardPlayed1 + cardPlayed2)
+console.log("Player 1 draws a " + cardPlayed1.push.name)
+console.log("Player 2 draws a " + cardPlayed2.push.name)
+console.log(player1.hand)
+console.log(cardPlayed1)
