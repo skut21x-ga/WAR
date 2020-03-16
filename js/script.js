@@ -6,11 +6,14 @@ var maximumCardValue = 12
 var player1 = []
 var player2 = []
 var playground = []
+var warground = []
 player1.hand=[]
 player2.hand=[]
 playground.player1card=[]
 playground.player2card=[]
 let i=0;
+warground.player1card=[]
+warground.player2card=[]
 
 
 // I'm starting at 2 as Index=0, so it's value will be 0
@@ -77,29 +80,98 @@ while(i<26)
 }
 
 pullCard()
-/* test contents of hand arrays: 
-console.log("player1 hand:"); console.log(player1.hand)
-console.log("player2 hand:"); console.log(player2.hand)
-console.log("verify leftover deck is empty:"); console.log(newDeck)
-*/
 
 ///execution of pulling the top card from each player //
 
-function playWar () {
+function playWar (){
+  if ((player1.hand.length>0) && (player1.hand.length<52)){
+    comparedCards()
+  }
+  else if (player1.hand.length=0){
+        console.log("Player 2 WINS!")}
+  else {console.log("Player 1 WINS!")}
+
+function comparedCards () {{
   playground.player1card.push=(player1.hand.shift())
   playground.player2card.push=(player2.hand.shift())
   let cardPlayed1 = playground.player1card
   let cardPlayed2 = playground.player2card
-  let cardsPlayedAll = (cardPlayed1 + cardPlayed2)
-  console.log("Player 1 draws a " + cardPlayed1.push.name)
-  console.log("Player 2 draws a " + cardPlayed2.push.name)
-  console.log(cardPlayed1.push.score)
-  console.log(cardPlayed2.push.score)
+
+  //announcing cards drawn:
+  console.log("Player 1 draws a " + cardPlayed1.push.name+
+              " & Player 2 draws a " + cardPlayed2.push.name)
+
+  //if player 1 wins:
   if(cardPlayed1.push.score>cardPlayed2.push.score){
-    console.log("Player 1 wins the round!")}
+    console.log("Player 1 wins the round!")
+    player1.hand.push(cardPlayed1.push)
+    player1.hand.push(cardPlayed2.push)
+    cardPlayed1=[]
+    cardPlayed2=[]
+    console.log("Cards Left for Player 1("+player1.hand.length+") & Player 2("+player2.hand.length+")")
+    playWar ()
+    }
+
+  //if player 2 wins:
   else if  (cardPlayed1.push.score<cardPlayed2.push.score){
-    console.log("Player 1 wins the round!")}
-  else {
-      console.log("It's a tie! Let's go to WAR!")}
-  }
+    console.log("Player 2 wins the round!")
+    player2.hand.push(cardPlayed1.push)
+    player2.hand.push(cardPlayed2.push)
+    cardPlayed1=[]
+    cardPlayed2=[]
+    console.log("Cards Left for Player 1("+player1.hand.length+") & Player 2("+player2.hand.length+")")
+    playWar ()
+    }
+  else {goToWar()}
+
+  //if war/tie:
+  function goToWar (){
+    console.log("It's a tie! Let's go to WAR!")
+    playground.player1card.push=(player1.hand.shift())
+    playground.player1card.push=(player1.hand.shift())
+    playground.player1card.push=(player1.hand.shift())
+    warground.player1card.push=(player1.hand.shift())
+    playground.player2card.push=(player2.hand.shift())
+    playground.player2card.push=(player2.hand.shift())
+    playground.player2card.push=(player2.hand.shift())
+    warground.player2card.push=(player2.hand.shift())
+    warcardPlayed1 = warground.player1card
+    warcardPlayed2 = warground.player2card
+    console.log("player1 hand:"); console.log(playground.player1card)
+    console.log("player1 warhand:"); console.log(warground.player1card)
+    console.log("player2 hand:"); console.log(playground.player2card)
+    console.log("player2 warhand:"); console.log(warground.player2card)
+    console.log("WAR: Player 1 draws a " + warcardPlayed1.push.name+
+      " & Player 2 draws a " + warcardPlayed2.push.name)
+
+      //if player 1 wins WAR:
+    if(warcardPlayed1.push.score>warcardPlayed2.push.score){
+    console.log("Player 1 wins the round!")
+    player1.hand.push(warcardPlayed1.push)
+    player1.hand.push(warcardPlayed2.push)
+    player1.hand.push(cardPlayed1.push)
+    player1.hand.push(cardPlayed2.push)
+    cardPlayed1=[]; cardPlayed2=[]
+    warcardPlayed1=[]; warcardPlayed2=[]
+    console.log("Cards Left for Player 1("+player1.hand.length+
+    ") & Player 2("+player2.hand.length+")")
+    playWar ()
+    }
+
+    //if player 2 wins WAR:
+    if(cardPlayed1.push.score<cardPlayed2.push.score){
+      console.log("Player 2 wins the round!")
+    player2.hand.push(cardPlayed1.push)
+    player2.hand.push(cardPlayed2.push)
+    player2.hand.push(warcardPlayed1.push)
+    player2.hand.push(warcardPlayed2.push)
+    cardPlayed1=[]; cardPlayed2=[]
+    warcardPlayed1=[]; warcardPlayed2=[]
+    console.log("Cards Left for Player 1("+player1.hand.length+
+    ") & Player 2("+player2.hand.length+")")
+    playWar ()
+    }
+    else {goToWar()}
+  }}}}
+
 playWar ()
