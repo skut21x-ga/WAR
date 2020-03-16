@@ -14,8 +14,10 @@ playground.player2card=[]
 let i=0;
 warground.player1card=[]
 warground.player2card=[]
+round = 0  
 
-
+console.log("Testing)")
+playWar ()
 // I'm starting at 2 as Index=0, so it's value will be 0
 // and the Ace value will be highest at 12.
 
@@ -65,7 +67,7 @@ function shuffleDeck (x) {
       x[j] = temp
     }
   }
-
+console.log("Testing)")
 let shuffledDeck = shuffleDeck(fullDeck)
 shuffledDeck
 
@@ -88,8 +90,8 @@ function playWar (){
     comparedCards()
   }
   else if (player1.hand.length==0){
-        console.log("Player 2 WINS!")}
-  else {console.log("Player 1 WINS!")}
+        return "Player Two WINS the GAME!"}
+  else return "Player One WINS the GAME!"}
 
 function comparedCards () {{
   playground.player1card.push=(player1.hand.shift())
@@ -98,79 +100,131 @@ function comparedCards () {{
   let cardPlayed2 = playground.player2card
 
   //announcing cards drawn:
-  console.log("Player 1 draws a " + cardPlayed1.push.name+
-              " & Player 2 draws a " + cardPlayed2.push.name)
+  round=round+1;
+  console.log("Round #"+round+". Player One draws a " + cardPlayed1.push.name+
+              " & Player Two draws a " + cardPlayed2.push.name)
 
-  //if player 1 wins:
+  //if Player One wins:
   if(cardPlayed1.push.score>cardPlayed2.push.score){
-    console.log("Player 1 wins the round!")
+    console.log("Player One wins the round!")
     player1.hand.push(cardPlayed1.push)
     player1.hand.push(cardPlayed2.push)
     cardPlayed1=[]
     cardPlayed2=[]
-    console.log("Cards Left for Player 1("+player1.hand.length+") & Player 2("+player2.hand.length+")")
+    
+    console.log("Cards Left for Player One("+player1.hand.length+") & Player Two("+player2.hand.length+")")
     playWar ()
     }
 
-  //if player 2 wins:
+  //if Player Two wins:
   else if  (cardPlayed1.push.score<cardPlayed2.push.score){
-    console.log("Player 2 wins the round!")
+    console.log("Player Two wins the round!")
     player2.hand.push(cardPlayed1.push)
     player2.hand.push(cardPlayed2.push)
     cardPlayed1=[]
     cardPlayed2=[]
-    console.log("Cards Left for Player 1("+player1.hand.length+") & Player 2("+player2.hand.length+")")
+    console.log("Cards Left for Player One("+player1.hand.length+") & Player Two("+player2.hand.length+")")
     playWar ()
     }
-  else {goToWar()}
+  else {goToWar()}}
 
   //if war/tie:
   function goToWar (){
     console.log("It's a tie! Let's go to WAR!")
-    playground.player1card.push=(player1.hand.shift())
-    playground.player1card.push=(player1.hand.shift())
-    playground.player1card.push=(player1.hand.shift())
+    console.log("Testing)")
+    //if (player1.hand.length<4){return "But...Player 1 doesn't have enough cards for war. Player 1 loses"}
+    //else if (player2.hand.length<4){return "But... Player 2 doesn't have enough cards for war. Player 2 loses"}
+    //else{
+    //player 1 put down 4 cards including a warcard
+ //   playground.player1card.push=(player1.hand.shift())
+ //   playground.player1card.push=(player1.hand.shift())
+ //   playground.player1card.push=(player1.hand.shift())
     warground.player1card.push=(player1.hand.shift())
-    playground.player2card.push=(player2.hand.shift())
-    playground.player2card.push=(player2.hand.shift())
-    playground.player2card.push=(player2.hand.shift())
+    //player 2 put down 4 cards including a warcard
+//    playground.player2card.push=(player2.hand.shift())
+ //   playground.player2card.push=(player2.hand.shift())
+  //  playground.player2card.push=(player2.hand.shift())
     warground.player2card.push=(player2.hand.shift())
-    warcardPlayed1 = warground.player1card
-    warcardPlayed2 = warground.player2card
-    console.log("player1 warhand:"); console.log(warground.player1card)
-    console.log("player2 warhand:"); console.log(warground.player2card)
-    console.log("WAR: Player 1 draws a " + warcardPlayed1.push.name+
-      " & Player 2 draws a " + warcardPlayed2.push.name)
+    console.log("Player One warcard: "+warground.player1card.push.name)
+    console.log("Player Two warcard: "+warground.player2card.push.name)
+      //warEnd()
 
-      //if player 1 wins WAR:
-    if(warcardPlayed1.push.score>warcardPlayed2.push.score){
-    console.log("Player 1 wins the round!")
-    player1.hand.push(warcardPlayed1.push)
-    player1.hand.push(warcardPlayed2.push)
-    player1.hand.push(cardPlayed1.push)
-    player1.hand.push(cardPlayed2.push)
-    cardPlayed1=[]; cardPlayed2=[]
+      function warEnd(){
+      //if Player One wins WAR:
+    if(warground.player1card.push.score>warground.player2card.push.score){
+    console.log("Player One wins the round!");
+    //return both war cards to winner
+    player1.hand.push(warground.player2card.push);
+    player1.hand.push(warground.player1card.push);
+    //return player 1 cards
+ //   player1.hand.push(playground.player1card.push)
+ //   player1.hand.push(playground.player1card.push)
+    player1.hand.push(playground.player1card.push);
+  //  player1.hand.push(playground.player1card.push)
+    //return player 2 cards to player 1
+//    player1.hand.push(playground.player2card.push)
+//    player1.hand.push(playground.player2card.push)
+//    player1.hand.push(playground.player2card.push)
+//    player1.hand.push(playground.player2card.push);
+    cardPlayed1=[]; cardPlayed2=[];
     warground.player1card=[];     warground.player1card=[];
-    console.log("Cards Left for Player 1("+player1.hand.length+
-    ") & Player 2("+player2.hand.length+")")
+    console.log("Cards Left for Player One("+player1.hand.length+
+    ") & Player Two("+player2.hand.length+")");
+    x=player1.hand.length+player2.hand.length;
+    console.log(x);
+
     playWar ()
     }
 
-    //if player 2 wins WAR:
-    if(cardPlayed1.push.score<cardPlayed2.push.score){
-      console.log("Player 2 wins the round!")
-    player2.hand.push(cardPlayed1.push)
-    player2.hand.push(cardPlayed2.push)
-    player2.hand.push(warcardPlayed1.push)
-    player2.hand.push(warcardPlayed2.push)
+    //if Player Two wins WAR:
+    if(warground.player1card.push.score<warground.player2card.push.score){
+      console.log("Player Two wins the round!")
+    //return both war cards to winner
+    player2.hand.push(warground.player2card.push)
+    player2.hand.push(warground.player1card.push)
+    //return player 1 cards
+    player2.hand.push(playground.player1card.push)
+ //   player2.hand.push(playground.player1card.push)
+//    player2.hand.push(playground.player1card.push)
+    //return player 2 cards to player 1
+ //   player2.hand.push(playground.player2card.push)
+    player2.hand.push(playground.player2card.push)
+//    player2.hand.push(playground.player2card.push)
     cardPlayed1=[]; cardPlayed2=[]
     warground.player1card=[];     warground.player1card=[];
-    console.log("Cards Left for Player 1("+player1.hand.length+
-    ") & Player 2("+player2.hand.length+")")
+    console.log("Cards Left for Player One("+player1.hand.length+
+    ") & Player Two("+player2.hand.length+")")
+    x=player1.hand.length+player2.hand.length
+
+    console.log(x)
     playWar ()
     }
-    
-    else {goToWar()}
-  }}}}
 
+    else {
+          console.log(
+          "We've had enough war. It's peacetime!"+" Returning cards to their owners")
+          //return both war cards to owners
+          player2.hand.push(warground.player2card.push)
+          player1.hand.push(warground.player1card.push)
+          //return player 1 cards
+          player1.hand.push(playground.player1card.push)
+   //       player1.hand.push(playground.player1card.push)
+   //       player1.hand.push(playground.player1card.push)
+   //       player1.hand.push(playground.player1card.push)
+          //return player 2 cards to player 2
+          player2.hand.push(playground.player2card.push)
+   //       player2.hand.push(playground.player2card.push)
+   //       player2.hand.push(playground.player2card.push)
+   //       player2.hand.push(playground.player2card.push)
+          cardPlayed1=[]; cardPlayed2=[]
+          warground.player1card=[];     warground.player1card=[];
+          console.log("Cards Left for Player One("+player1.hand.length+
+          ") & Player Two("+player2.hand.length+")")
+          x=player1.hand.length+player2.hand.length
+
+          console.log(x)
+          playWar ()}
+          
+        }}
+      }
 playWar ()
