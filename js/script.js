@@ -16,7 +16,6 @@ warground.player1card=[]
 warground.player2card=[]
 round = 0  
 
-console.log("Testing)")
 playWar ()
 // I'm starting at 2 as Index=0, so it's value will be 0
 // and the Ace value will be highest at 12.
@@ -67,7 +66,6 @@ function shuffleDeck (x) {
       x[j] = temp
     }
   }
-console.log("Testing)")
 let shuffledDeck = shuffleDeck(fullDeck)
 shuffledDeck
 
@@ -89,7 +87,7 @@ function playWar (){
   if ((player1.hand.length>0) && (player1.hand.length<52)){
     comparedCards()
   }
-  else if (player1.hand.length==0){
+  else if (player1.hand.length=0){
         return "Player Two WINS the GAME!"}
   else return "Player One WINS the GAME!"}
 
@@ -126,15 +124,14 @@ function comparedCards () {{
     console.log("Cards Left for Player One("+player1.hand.length+") & Player Two("+player2.hand.length+")")
     playWar ()
     }
-  else {goToWar()}}
+    else goToWar ()}
 
   //if war/tie:
   function goToWar (){
     console.log("It's a tie! Let's go to WAR!")
-    console.log("Testing)")
-    //if (player1.hand.length<4){return "But...Player 1 doesn't have enough cards for war. Player 1 loses"}
-    //else if (player2.hand.length<4){return "But... Player 2 doesn't have enough cards for war. Player 2 loses"}
-    //else{
+    if (player1.hand.length<4){console.log("But...Player 1 doesn't have enough cards for war. Player 1 loses")}
+    else if (player2.hand.length<4){console.log("But... Player 2 doesn't have enough cards for war. Player 2 loses")}
+    else{
     //player 1 put down 4 cards including a warcard
  //   playground.player1card.push=(player1.hand.shift())
  //   playground.player1card.push=(player1.hand.shift())
@@ -147,31 +144,20 @@ function comparedCards () {{
     warground.player2card.push=(player2.hand.shift())
     console.log("Player One warcard: "+warground.player1card.push.name)
     console.log("Player Two warcard: "+warground.player2card.push.name)
-      //warEnd()
+      warEnd()
 
       function warEnd(){
       //if Player One wins WAR:
-    if(warground.player1card.push.score>warground.player2card.push.score){
+    if(warground.player1card.push.score>=warground.player2card.push.score){
     console.log("Player One wins the round!");
-    //return both war cards to winner
     player1.hand.push(warground.player2card.push);
     player1.hand.push(warground.player1card.push);
-    //return player 1 cards
- //   player1.hand.push(playground.player1card.push)
- //   player1.hand.push(playground.player1card.push)
     player1.hand.push(playground.player1card.push);
-  //  player1.hand.push(playground.player1card.push)
-    //return player 2 cards to player 1
-//    player1.hand.push(playground.player2card.push)
-//    player1.hand.push(playground.player2card.push)
-//    player1.hand.push(playground.player2card.push)
-//    player1.hand.push(playground.player2card.push);
+    player1.hand.push(playground.player2card.push)
     cardPlayed1=[]; cardPlayed2=[];
     warground.player1card=[];     warground.player1card=[];
     console.log("Cards Left for Player One("+player1.hand.length+
     ") & Player Two("+player2.hand.length+")");
-    x=player1.hand.length+player2.hand.length;
-    console.log(x);
 
     playWar ()
     }
@@ -179,52 +165,30 @@ function comparedCards () {{
     //if Player Two wins WAR:
     if(warground.player1card.push.score<warground.player2card.push.score){
       console.log("Player Two wins the round!")
-    //return both war cards to winner
     player2.hand.push(warground.player2card.push)
     player2.hand.push(warground.player1card.push)
-    //return player 1 cards
     player2.hand.push(playground.player1card.push)
- //   player2.hand.push(playground.player1card.push)
-//    player2.hand.push(playground.player1card.push)
-    //return player 2 cards to player 1
- //   player2.hand.push(playground.player2card.push)
     player2.hand.push(playground.player2card.push)
-//    player2.hand.push(playground.player2card.push)
     cardPlayed1=[]; cardPlayed2=[]
     warground.player1card=[];     warground.player1card=[];
     console.log("Cards Left for Player One("+player1.hand.length+
     ") & Player Two("+player2.hand.length+")")
     x=player1.hand.length+player2.hand.length
-
     console.log(x)
     playWar ()
     }
 
-    else {
-          console.log(
-          "We've had enough war. It's peacetime!"+" Returning cards to their owners")
-          //return both war cards to owners
-          player2.hand.push(warground.player2card.push)
-          player1.hand.push(warground.player1card.push)
-          //return player 1 cards
-          player1.hand.push(playground.player1card.push)
-   //       player1.hand.push(playground.player1card.push)
-   //       player1.hand.push(playground.player1card.push)
-   //       player1.hand.push(playground.player1card.push)
-          //return player 2 cards to player 2
-          player2.hand.push(playground.player2card.push)
-   //       player2.hand.push(playground.player2card.push)
-   //       player2.hand.push(playground.player2card.push)
-   //       player2.hand.push(playground.player2card.push)
-          cardPlayed1=[]; cardPlayed2=[]
-          warground.player1card=[];     warground.player1card=[];
-          console.log("Cards Left for Player One("+player1.hand.length+
-          ") & Player Two("+player2.hand.length+")")
-          x=player1.hand.length+player2.hand.length
+    // My war tie wasn't finished or working well. ran out of time. 
+    //else {
+    //      console.log("We've had enough war. GAME OVER")
+    //      cardPlayed1=[]; cardPlayed2=[]
+    //      warground.player1card=[];     warground.player1card=[];
+    //      console.log("Cards Left for Player One("+player1.hand.length+
+    //      ") & Player Two("+player2.hand.length+")")
+    //      x=player1.hand.length+player2.hand.length
 
-          console.log(x)
-          playWar ()}
+     //     console.log(x)
           
-        }}
-      }
+    //    }}
+      }}}}
 playWar ()
