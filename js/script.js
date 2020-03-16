@@ -87,7 +87,7 @@ function playWar (){
   if ((player1.hand.length>0) && (player1.hand.length<52)){
     comparedCards()
   }
-  else if (player1.hand.length=0){
+  else if (player1.hand.length==0){
         console.log("Player 2 WINS!")}
   else {console.log("Player 1 WINS!")}
 
@@ -137,9 +137,7 @@ function comparedCards () {{
     warground.player2card.push=(player2.hand.shift())
     warcardPlayed1 = warground.player1card
     warcardPlayed2 = warground.player2card
-    console.log("player1 hand:"); console.log(playground.player1card)
     console.log("player1 warhand:"); console.log(warground.player1card)
-    console.log("player2 hand:"); console.log(playground.player2card)
     console.log("player2 warhand:"); console.log(warground.player2card)
     console.log("WAR: Player 1 draws a " + warcardPlayed1.push.name+
       " & Player 2 draws a " + warcardPlayed2.push.name)
@@ -152,7 +150,7 @@ function comparedCards () {{
     player1.hand.push(cardPlayed1.push)
     player1.hand.push(cardPlayed2.push)
     cardPlayed1=[]; cardPlayed2=[]
-    warcardPlayed1=[]; warcardPlayed2=[]
+    warground.player1card=[];     warground.player1card=[];
     console.log("Cards Left for Player 1("+player1.hand.length+
     ") & Player 2("+player2.hand.length+")")
     playWar ()
@@ -166,11 +164,12 @@ function comparedCards () {{
     player2.hand.push(warcardPlayed1.push)
     player2.hand.push(warcardPlayed2.push)
     cardPlayed1=[]; cardPlayed2=[]
-    warcardPlayed1=[]; warcardPlayed2=[]
+    warground.player1card=[];     warground.player1card=[];
     console.log("Cards Left for Player 1("+player1.hand.length+
     ") & Player 2("+player2.hand.length+")")
     playWar ()
     }
+    
     else {goToWar()}
   }}}}
 
