@@ -2,7 +2,10 @@
 
 ## Instructions
 
-Please open up your JS console for the html file and the game will auto-run.
+Please open up your JS console for the html file and the script will auto run through a full game until a winner is found.
+
+## Screenshot
+![War Screenshot](https://github.com/skut21x-ga/WAR/blob/master/War2.png?raw=true "WAR Console Screenshot"
 
 ## How WAR works:
 
